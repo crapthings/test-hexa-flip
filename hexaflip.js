@@ -324,6 +324,7 @@
     HexaFlip.prototype.setValue = function(settings) {
       var cube, index, key, value, _results;
       _results = [];
+      console.log(Array.isArray(settings))
       for (key in settings) {
         value = settings[key];
         if (!(this.sets[key] && !this.cubes[key].touchStarted)) {
