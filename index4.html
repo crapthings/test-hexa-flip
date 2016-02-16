@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HexaFlip: A Flexible 3D Cube Plugin</title>
+        <meta name="description" content="HexaFlip: A Flexible 3D Cube Plugin" />
+        <meta name="keywords" content="hexaflip, 3d cube, css3 javascript, plugin, perspective, rotation, transition" />
+        <meta name="author" content="Dan Motzenbecker for Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="default.css" />
+        <link href="hexaflip.css" rel="stylesheet" type="text/css">
+        <link href="demo.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="main">
+                <div id="username" class="demo"></div>
+                <div id="password" class="demo"></div>
+                <div id="vcode" class="demo"></div>
+
+                <div>
+                    <span id="submit">确认密码</span>
+                    <div id="output"></div>
+                </div>
+            </div>
+        </div>
+    <script src="lodash.min.js"></script>
+    <script src="hexaflip.js"></script>
+    <script>
+        var hexaDemo5,
+            set = [
+                {
+                    value: 0,
+                    style: {
+                        backgroundColor: '#e67e22'
+                    }
+                },
+                {
+                    value: 1,
+                    style: {
+                        backgroundColor: '#1ABC9C'
+                    }
+                },
+                {
+                    value: 2,
+                    style: {
+                        backgroundColor: '#f1c40f'
+                    }
+                },
+                {
+                    value: 3,
+                    style: {
+                        backgroundColor: '#2ECC71'
+                    }
+                }
+            ];
+        document.addEventListener('DOMContentLoaded', function(){
+
+            var submit = document.getElementById('submit'),
+                output = document.getElementById('output');
+
+            username = new HexaFlip(document.getElementById('username'),
+                {set1: set, set2: set, set3: set },
+                {fontSize: 50, margin: 4, perspective: 1000}
+            );
+
+            password = new HexaFlip(document.getElementById('password'),
+                {set1: set, set2: set, set3: set },
+                {fontSize: 50, margin: 4, perspective: 1000}
+            );
+
+            vcode = new HexaFlip(document.getElementById('vcode'),
+                {set1: set, set2: set, set3: set },
+                {fontSize: 50, margin: 4, perspective: 1000}
+            );
+
+            submit.addEventListener('click', function(){
+                if(username.getValue().join(' ') === '1 1 1' && password.getValue().join(' ') === '2 2 2' && vcode.getValue().join(' ') === '3 3 3' ){
+                    output.innerHTML = '密码正确';
+                    _.times(9, function() {
+                        username.flip()
+                    })
+
+                    _.times(9, function() {
+                        password.flip()
+                    })
+
+                    _.times(9, function() {
+                        vcode.flip()
+                    })
+
+                } else {
+                    output.innerHTML = '密码错误，密码为111 222 333';
+                }
+            }, false);
+
+        }, false);
+
+    </script>
+    </body>
+</html>
