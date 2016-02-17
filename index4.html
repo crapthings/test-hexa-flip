@@ -14,10 +14,10 @@
     </head>
     <body>
         <div class="container">
-            <div class="main">
-                <div id="username" class="demo"></div>
-                <div id="password" class="demo"></div>
-                <div id="vcode" class="demo"></div>
+            <div class="main outbox1">
+                <div id="username" class="demo a1"></div>
+                <div id="password" class="demo a2"></div>
+                <div id="vcode" class="demo a3"></div>
 
                 <div>
                     <span id="submit">确认密码</span>
@@ -57,7 +57,7 @@
                 }
             ];
 
-            set = '0123'.split('')
+            // set = '0123'.split('')
 
         document.addEventListener('DOMContentLoaded', function(){
 
@@ -66,17 +66,17 @@
 
             window.username = new HexaFlip(document.getElementById('username'),
                 { set1: set, set2: set, set3: set },
-                { fontSize: 132, margin: 4, perspective: 2000 }
+                { fontSize: 132, margin: 15, perspective: 1000, horizontalFlip: false }
             );
 
             var password = new HexaFlip(document.getElementById('password'),
                 {set1: set, set2: set, set3: set },
-                {fontSize: 132, margin: 4, perspective: 1000}
+                {fontSize: 132, margin: 15, perspective: 1000}
             );
 
             var vcode = new HexaFlip(document.getElementById('vcode'),
                 {set1: set, set2: set, set3: set },
-                {fontSize: 132, margin: 4, perspective: 1000}
+                {fontSize: 132, margin: 15, perspective: 1000}
             );
 
 
