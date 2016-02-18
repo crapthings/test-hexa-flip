@@ -206,3 +206,43 @@ footer {
   -webkit-backface-visibility: hidden !important;
 }
 */
+#swipeit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+/*
+#swipeit > div {
+  width: 100vw;
+}
+
+#swipeit > div > div:nth-child(1) {
+  background-color: #e67e22;
+}
+
+#swipeit > div > div:nth-child(2) {
+  background-color: #1ABC9C;
+}
+*/
+
+.sss {
+  color: white;
+}
+
+.sss-cell {
+  width: 100vw; /* full width */
+  height: 100vh; /* height of gallery */
+}
+
+
+.sss-cell:nth-child(1) {
+  background-color: #e67e22;
+}
+
+.sss-cell:nth-child(2) {
+  background-color: #1ABC9C;
+}
