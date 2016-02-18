@@ -17,6 +17,14 @@
   -o-transition: -o-transform 0.4s;
   -ms-transition: -ms-transform 0.4s;
   transition: transform 0.4s;
+  /*z-index: 100;*/
+
+  /*backface-visibility: hidden;*/
+  /*transform: scale3d(1);*/
+  /*transform: translateZ(0);*/
+
+  /*-webkit-backface-visibility: hidden;*/
+  /*-webkit-transform: scale(1);*/
 }
 .hexaflip-cube.no-tween {
   -webkit-transition-duration: 0;
@@ -26,6 +34,8 @@
   transition-duration: 0;
 }
 .hexaflip-cube > div {
+
+  /*box-sizing:border-box;*/
   width: 100%;
   overflow: hidden;
   height: 100.5%;
@@ -42,7 +52,16 @@
   color: #fff;
   font-weight: 100;
   text-shadow: 0 -2px 0 rgba(0,0,0,0.2);
-  line-height: 1.5;
+  /*line-height: 1.5;*/
+
+  /*backface-visibility: hidden;*/
+  /*transform: scale3d(1);*/
+  /*transform: translateZ(0);*/
+
+  /*z-index: 111;*/
+
+  /*-webkit-backface-visibility: hidden;*/
+  /*-webkit-transform: scale(1);*/
 }
 .hexaflip-left,
 .hexaflip-right {
@@ -50,4 +69,8 @@
 }
 .hexaflip-timepicker .hexaflip-cube:last-child > div:nth-child(odd) {
   background-color: #ff575b;
+}
+
+* {
+  backface-visibility: hidden !important;
 }
