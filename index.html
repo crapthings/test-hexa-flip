@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="default.css" />
         <link href="hexaflip.css" rel="stylesheet" type="text/css">
         <link href="demo.css" rel="stylesheet" type="text/css">
@@ -11,7 +12,7 @@
     <body>
         <div class="container flex">
 
-            <header class='center-footer' style='height: 200px;'>
+            <header class='animated center-footer' style='height: 200px;'>
                 <h1>律师方</h1>
             </header>
 
@@ -23,7 +24,7 @@
                 </div>
             </div>
 
-            <footer class='flex-1x'>
+            <footer class='animated flex-1x'>
                 <div class='center-footer'>
                     <span id="submit">确认密码</span>
                     <div id="output"></div>
@@ -79,14 +80,14 @@
         password.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
         vcode.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
 
-        $($vcode).addClass('animated fadeInDownBig').removeProp('hidden')
+        $($vcode).removeProp('hidden').addClass('animated rubberBand')
 
         _.delay(function () {
-            $($password).addClass('animated fadeInDownBig').removeProp('hidden')
+            $($password).removeProp('hidden').addClass('animated rubberBand')
         }, 120)
 
         _.delay(function () {
-            $($username).addClass('animated fadeInDownBig').removeProp('hidden')
+            $($username).removeProp('hidden').addClass('animated rubberBand')
         }, 150)
 
         _.delay(function () {
@@ -134,6 +135,8 @@
 
                 _.delay(function () {
                     $('.outbox1').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    $('header').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    $('footer').removeClass('bounceOutUp').addClass('bounceOutUp')
                 }, 400)
 
             } else {

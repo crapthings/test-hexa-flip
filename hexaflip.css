@@ -70,7 +70,3 @@
 .hexaflip-timepicker .hexaflip-cube:last-child > div:nth-child(odd) {
   background-color: #ff575b;
 }
-
-* {
-  backface-visibility: hidden !important;
-}
