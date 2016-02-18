@@ -10,10 +10,10 @@
     </head>
     <body>
         <div class="container">
-            <div class="main outbox1 animated bounceInUp">
-                <div id="username" class="demo"></div>
-                <div id="password" class="demo" hidden></div>
-                <div id="vcode" class="demo" hidden></div>
+            <div class="main outbox1 animated">
+                <div id="username" class="demo" style='opacity: 0;'></div>
+                <div id="password" class="demo" style='opacity: 0;'></div>
+                <div id="vcode" class="demo" style='opacity: 0;'></div>
 
                 <div>
                     <span id="submit">确认密码</span>
@@ -50,6 +50,7 @@
             }
         }]
 
+        dataset1 = 'HJQR'.split('')
         dataset = '0123'.split('')
 
         var $username = document.getElementById('username')
@@ -59,26 +60,54 @@
         var $output = $('#output')
 
         var set = { set1: dataset, set2: dataset, set3: dataset  }
-        var opt = { fontSize: 132, margin: 10, perspective: 1000 }
+        var set1 = { set1: dataset1, set2: dataset1, set3: dataset1  }
+        var opt = { fontSize: 66, margin: 10, perspective: 1000, size: 100 }
 
-        var username = new HexaFlip($username, set, opt)
+        window.username = new HexaFlip($username, set1, opt)
         var password = new HexaFlip($password, set, opt)
         var vcode = new HexaFlip($vcode, set, opt)
 
-        
+        password.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+        vcode.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
 
+        $($vcode).addClass('animated fadeInDownBig').removeProp('hidden')
+
+        _.delay(function () {
+            $($password).addClass('animated fadeInDownBig').removeProp('hidden')
+        }, 120)
+
+        _.delay(function () {
+            $($username).addClass('animated fadeInDownBig').removeProp('hidden')
+        }, 150)
+
+        _.delay(function () {
+            // username.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+
+            // password.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+            // vcode.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+
+            username.setValue({ set1: 'J', set2: 'Q', set3: 'R' })
+
+            _.delay(function () {
+                password.setValue({ set1: 0, set2: 0, set3: 0 })
+            }, 300)
+
+            _.delay(function () {
+                vcode.setValue({ set1: 0, set2: 0, set3: 0 })
+            }, 600)
+        
+        }, 1200)
+        
         $submit.on('click', handleSubmit)
 
         function handleSubmit () {
 
-            var checkUsername = username.getValue().join(' ') === '1 1 1'
-            var checkPassword = password.getValue().join(' ') === '2 2 2'
-            var checkVcode = vcode.getValue().join(' ') === '3 3 3'
+            var checkUsername = username.getValue().join(' ') === '1 3 3'
+            var checkPassword = password.getValue().join(' ') === '2 3 1'
+            var checkVcode = vcode.getValue().join(' ') === '3 2 1'
 
             if (checkUsername && checkPassword && checkVcode) {
-                $($username).removeProp('hidden').show()
-                $($password).removeProp('hidden').show()
-                $($vcode).removeProp('hidden').show()
+                
                 output.innerHTML = '登陆。。。'
 
                 username.flipBack()
@@ -88,27 +117,20 @@
                 vcode.flipBack()
                 vcode.flipBack()
 
+                username.setValue({ set1: 'J', set2: 'Q', set3: 'R' })
+                
+                password.setValue({ set1: 0, set2: 0, set3: 0 })
+                
+                vcode.setValue({ set1: 0, set2: 0, set3: 0 })
+
                 _.delay(function () {
                     $('.outbox1').removeClass('bounceOutUp').addClass('bounceOutUp')
                 }, 700)
 
             } else {
-                
-                output.innerHTML = '错误，111 222 333？'
+
                 $('.outbox1').addClass('wobble')
-                
-                if (!checkPassword) {
-                    $($vcode).hide()
-                } else {
-                    $($vcode).removeProp('hidden').show()
-                }
-                
-                if (!checkUsername) {
-                    $($password).hide()
-                    $($vcode).hide()
-                } else {
-                    $($password).removeProp('hidden').show()
-                }
+                output.innerHTML = '133 231 321'
             }
         }
 
