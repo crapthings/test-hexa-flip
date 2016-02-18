@@ -246,3 +246,11 @@ footer {
 .sss-cell:nth-child(2) {
   background-color: #1ABC9C;
 }
+
+.sss-cell:nth-child(3) {
+  background-color: #f1c40f;
+}
+
+.sss-cell:nth-child(4) {
+  background-color: #2ECC71;
+}
