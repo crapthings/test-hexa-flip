@@ -2,12 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HexaFlip: A Flexible 3D Cube Plugin</title>
-        <meta name="description" content="HexaFlip: A Flexible 3D Cube Plugin" />
-        <meta name="keywords" content="hexaflip, 3d cube, css3 javascript, plugin, perspective, rotation, transition" />
-        <meta name="author" content="Dan Motzenbecker for Codrops" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" type="text/css" href="default.css" />
         <link href="hexaflip.css" rel="stylesheet" type="text/css">
         <link href="demo.css" rel="stylesheet" type="text/css">
@@ -16,8 +11,8 @@
         <div class="container">
             <div class="main outbox1">
                 <div id="username" class="demo a1"></div>
-                <div id="password" class="demo a2"></div>
-                <div id="vcode" class="demo a3"></div>
+                <div id="password" class="demo a2" hidden></div>
+                <div id="vcode" class="demo a3" hidden></div>
 
                 <div>
                     <span id="submit">确认密码</span>
@@ -26,112 +21,79 @@
             </div>
         </div>
     <script src="lodash.min.js"></script>
+    <script src="jquery.js"></script>
     <script src="hexaflip.js"></script>
     <script>
 
-        var hexaDemo5,
-            set = [
-                {
-                    value: '0',
-                    style: {
-                        backgroundColor: '#e67e22'
-                    }
-                },
-                {
-                    value: '1',
-                    style: {
-                        backgroundColor: '#1ABC9C'
-                    }
-                },
-                {
-                    value: '2',
-                    style: {
-                        backgroundColor: '#f1c40f'
-                    }
-                },
-                {
-                    value: '3',
-                    style: {
-                        backgroundColor: '#2ECC71'
-                    }
-                }
-            ];
+    (function ($) {
 
-            // set = '0123'.split('')
+        var dataset = [{
+            value: '0',
+            style: {
+                backgroundColor: '#e67e22'
+            }
+        }, {
+            value: '1',
+            style: {
+                backgroundColor: '#1ABC9C'
+            }
+        }, {
+            value: '2',
+            style: {
+                backgroundColor: '#f1c40f'
+            }
+        }, {
+            value: '3',
+            style: {
+                backgroundColor: '#2ECC71'
+            }
+        }]
 
-        document.addEventListener('DOMContentLoaded', function(){
+        // dataset = '0123'.split('')
 
-            var submit = document.getElementById('submit'),
-                output = document.getElementById('output');
+        var $username = document.getElementById('username')
+        var $password = document.getElementById('password')
+        var $vcode = document.getElementById('vcode')
+        var $submit = $('#submit')
+        var $output = $('#output')
 
-            window.username = new HexaFlip(document.getElementById('username'),
-                { set1: set, set2: set, set3: set },
-                { fontSize: 132, margin: 15, perspective: 1000, horizontalFlip: false }
-            );
+        var set = { set1: dataset, set2: dataset, set3: dataset }
+        var opt = { fontSize: 132, margin: 15, perspective: 1000 }
 
-            var password = new HexaFlip(document.getElementById('password'),
-                {set1: set, set2: set, set3: set },
-                {fontSize: 132, margin: 15, perspective: 1000}
-            );
+        var username = new HexaFlip($username, set, opt)
+        var password = new HexaFlip($password, set, opt)
+        var vcode = new HexaFlip($vcode, set, opt)
 
-            var vcode = new HexaFlip(document.getElementById('vcode'),
-                {set1: set, set2: set, set3: set },
-                {fontSize: 132, margin: 15, perspective: 1000}
-            );
+        $submit.on('click', handleSubmit)
 
+        function handleSubmit () {
 
-            username.setValue({
-                set1: {
-                    value: _.sample(set).toString()
-                },
-                set2: _.sample(set).toString(),
-                set3: _.sample(set).toString()
-            })
+            var checkUsername = username.getValue().join(' ') === '1 1 1'
+            var checkPassword = password.getValue().join(' ') === '2 2 2'
+            var checkVcode = vcode.getValue().join(' ') === '3 3 3'
 
-            password.setValue({
-                set1: _.sample(set).toString(),
-                set2: _.sample(set).toString(),
-                set3: _.sample(set).toString()
-            })
-
-            vcode.setValue({
-                set1: _.sample(set).toString(),
-                set2: _.sample(set).toString(),
-                set3: _.sample(set).toString()
-            })
-
-            submit.addEventListener('click', function(){
-                if(username.getValue().join(' ') === '1 1 1' && password.getValue().join(' ') === '2 2 2' && vcode.getValue().join(' ') === '3 3 3'){
-                    output.innerHTML = '密码正确';
-                    _.delay(function () {
-                        username.setValue({
-                            set1: '0',
-                            set2: '0',
-                            set3: '0',
-                        })
-                    }, _.random(1000))
-
-                    _.delay(function () {
-                        password.setValue({
-                            set1: '0',
-                            set2: '0',
-                            set3: '0',
-                        })
-                    }, _.random(1000))
-
-                    _.delay(function () {
-                        vcode.setValue({
-                            set1: '0',
-                            set2: '0',
-                            set3: '0',
-                        })
-                    }, _.random(1000))
+            if (checkUsername && checkPassword && checkVcode) {
+                $($username).removeProp('hidden').show()
+                $($password).removeProp('hidden').show()
+                $($vcode).removeProp('hidden').show()
+                output.innerHTML = '登陆。。。'
+            } else {
+                output.innerHTML = '错误，111 222 333？'
+                if (!checkPassword) {
+                    $($vcode).hide()
                 } else {
-                    output.innerHTML = '密码错误，密码为111 222 333';
+                    $($vcode).removeProp('hidden').show()
                 }
-            }, false);
+                if (!checkUsername) {
+                    $($password).hide()
+                    $($vcode).hide()
+                } else {
+                    $($password).removeProp('hidden').show()
+                }
+            }
+        }
 
-        }, false);
+    })(jQuery)
 
     </script>
     </body>
