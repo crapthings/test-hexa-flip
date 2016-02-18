@@ -239,7 +239,7 @@ footer {
 }
 
 
-.sss-cell:nth-child(1) {
+.sss-cell:nth-child(1), .sss-cell:nth-child(5) {
   background-color: #e67e22;
 }
 
@@ -253,4 +253,8 @@ footer {
 
 .sss-cell:nth-child(4) {
   background-color: #2ECC71;
+}
+
+.sss h2 {
+  margin-top: 90px;
 }
