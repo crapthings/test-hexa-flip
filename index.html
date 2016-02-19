@@ -84,7 +84,7 @@
             </header>
 
             <div class="flex-2x">
-                <div class="main outbox1">
+                <div class="main outbox1" style='margin-top: 24px;'>
                     <div id="username" class="demo" style='opacity: 0;'></div>
                     <div id="password" class="demo" style='opacity: 0;'></div>
                     <div id="vcode" class="demo" style='opacity: 0;'></div>
@@ -147,6 +147,11 @@
         } else {
             fontSize = 50
             size = ((window.screen.width - 47.5 * 2) - 20) / 3
+        }
+
+        if (window.screen.width > 400) {
+            fontSize = 60
+            size = 80
         }
 
         var $username = document.getElementById('username')
