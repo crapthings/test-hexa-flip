@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="flickity.css" media="screen">
     </head>
-    <body style='background-color: transparent;'>
+    <body style='background-color: transparent;' class="animated fadeIn">
 
         <div id="swipeit" class='animated'>
             <div  class='sss'>
@@ -220,10 +220,11 @@
                 vcode.setValue({ set1: 0, set2: 0, set3: 0 })
 
                 _.delay(function () {
-                    $('.outbox1').removeClass('bounceOutUp').addClass('bounceOutUp')
-                    $('header').removeClass('bounceOutUp').addClass('bounceOutUp')
-                    $('footer').removeClass('bounceOutUp').addClass('bounceOutUp')
-                    $('#swipeit').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    // $('.outbox1').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    // $('header').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    // $('footer').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    // $('#swipeit').removeClass('bounceOutUp').addClass('bounceOutUp')
+                    $('body').removeClass('bounceOutUp').addClass('bounceOutUp')
                 }, 400)
 
             } else {
