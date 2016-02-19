@@ -1,12 +1,40 @@
-html, body {
-  overflow: hidden;
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-#choose-time {
-  margin: 80px auto;
-  width: 300px;
-  text-align: center;
+html, body {
+  overflow: hidden;
+  height: 100vh;
 }
+
+body {
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    background: #f9f9f9;
+    font-weight: 300;
+    font-size: 15px;
+    color: #333;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.container {
+  width: 100vw;
+  position: relative;
+  margin: 0 auto;
+  position: relative;
+}
+
+.main {
+  margin: 0 auto;
+  position: relative;
+}
+
 #set-button,
 .submit {
   background-color: #eee;
@@ -175,7 +203,7 @@ footer {
 }
 
 .hexaflip-cube {
-  line-height: 80px;
+  line-height: 1.6 !important;
 }
 
 
@@ -272,9 +300,14 @@ h1, h2 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 48px;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }

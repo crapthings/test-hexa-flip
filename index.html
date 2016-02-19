@@ -5,12 +5,14 @@
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" type="text/css" href="default.css" />
         <link href="hexaflip.css" rel="stylesheet" type="text/css">
         <link href="demo.css" rel="stylesheet" type="text/css">
         <link href="animate.css" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="flickity.css" media="screen">
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link rel="apple-touch-icon" sizes="512x512" href="cube-icon-ios.png">
     </head>
     <body style='background-color: transparent;' class="animated fadeIn">
 
@@ -21,7 +23,7 @@
                     <h1 style='color: #799fab;'>律方云法务</h1>
                     <h2 style="color: #a1d1e0;">客户主管</h2>
                 </header>
-                <div class="flex-1x"></div>
+                <div class="flex-2x"></div>
                 <footer class='center-footer'>
                     <!-- <span class="submit">确认密码</span>
                     <div class="output"></div> -->
@@ -32,7 +34,7 @@
                     <h1 style='color: #646464;'>律方云法务</h1>
                     <h2 style='color: #a9a9a9;'>客户操作员</h2>
                 </header>
-                <div class="flex-1x"></div>
+                <div class="flex-2x"></div>
                 <footer class='center-footer'>
                     <!-- <span class="submit">确认密码</span>
                     <div class="output"></div> -->
@@ -43,7 +45,7 @@
                     <h1 style='color: #646464;'>律方云法务</h1>
                     <h2 style='color: #a9a9a9;'>法务</h2>
                 </header>
-                <div class="flex-1x"></div>
+                <div class="flex-2x"></div>
                 <footer class='center-footer'>
                     <!-- <span class="submit">确认密码</span>
                     <div class="output"></div> -->
@@ -54,7 +56,7 @@
                         <h1 style='color: #fff;'>律方云法务</h1>
                         <h2 style='color: #fff;'>律师</h2>
                     </header>
-                    <div class="flex-1x"></div>
+                    <div class="flex-2x"></div>
                     <footer class='center-footer'>
                         <!-- <span class="submit">确认密码</span>
                         <div class="output"></div> -->
@@ -66,7 +68,7 @@
                     <h1 style='color: #c0b29a;'>律方云法务</h1>
                     <h2 style='color: #9c835c;'>管理员</h2>
                 </header>
-                <div class="flex-1x"></div>
+                <div class="flex-2x"></div>
                 <footer class='center-footer'>
                     <!-- <span class="submit">确认密码</span>
                     <div class="output"></div> -->
@@ -75,7 +77,7 @@
             </div>
         </div>
 
-        <div class="container flex">
+        <div class="container flex animated">
 
             <header class='animated center-footer' style='height: 200px;'>
                 <!-- <h1 style='color: white;'>律方云法务平台</h1> -->
@@ -112,17 +114,7 @@
           pageDots: false
         });
 
-        var hammertime = new Hammer($('body')[0], {
-            disableScroll: true,
-            duration: 1200
-        })
-        hammertime.on('swipe', function(ev) {
-            console.log(ev)
-            if (ev.direction == 2)
-                sss.flickity('next')
-            if (ev.direction == 4)
-                sss.flickity('previous')
-        });
+
 
         var dataset = [{
             value: '0',
@@ -149,6 +141,14 @@
         dataset1 = 'HJQR'.split('')
         dataset = '0123'.split('')
 
+        if (window.screen.width > 374) {
+            fontSize = 50
+            size = ((window.screen.width - 47.5 * 2) - 20) / 3
+        } else {
+            fontSize = 50
+            size = ((window.screen.width - 47.5 * 2) - 20) / 3
+        }
+
         var $username = document.getElementById('username')
         var $password = document.getElementById('password')
         var $vcode = document.getElementById('vcode')
@@ -157,7 +157,7 @@
 
         var set = { set1: dataset, set2: dataset, set3: dataset  }
         var set1 = { set1: dataset1, set2: dataset1, set3: dataset1  }
-        var opt = { fontSize: 50, margin: 10, perspective: 1000, size: 80 }
+        var opt = { fontSize: fontSize, margin: 10, perspective: 1000, size: size }
 
         window.username = new HexaFlip($username, set1, opt)
         var password = new HexaFlip($password, set, opt)
@@ -195,6 +195,35 @@
         }, 900)
 
         $submit.on('click', handleSubmit)
+
+        var hammertime = new Hammer($('body')[0], {
+            disableScroll: true,
+            duration: 1200
+        })
+
+        hammertime.on('swipe', function(ev) {
+            if (ev.direction == 2)
+                sss.flickity('next')
+
+                username.setValue({ set1: _.sample(dataset1), set2: _.sample(dataset1), set3: _.sample(dataset1) })
+                password.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+                vcode.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+
+            if (ev.direction == 4)
+                sss.flickity('previous')
+
+                username.setValue({ set1: _.sample(dataset1), set2: _.sample(dataset1), set3: _.sample(dataset1) })
+                password.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+                vcode.setValue({ set1: _.random(3), set2: _.random(3), set3: _.random(3) })
+        });
+
+        sss.on('cellSelect', function () {
+            _.delay(function () {
+                username.setValue({ set1: 'J', set2: 'Q', set3: 'R' })
+                password.setValue({ set1: 0, set2: 0, set3: 0 })
+                vcode.setValue({ set1: 0, set2: 0, set3: 0 })
+            }, 600)
+        })
 
         function handleSubmit () {
 
