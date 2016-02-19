@@ -236,6 +236,9 @@ footer {
 .sss-cell {
   width: 100vw; /* full width */
   height: 100vh; /* height of gallery */
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center center !important;
 }
 
 
@@ -256,5 +259,21 @@ footer {
 }
 
 .sss h2 {
-  margin-top: 90px;
+  /*margin-top: 90px;*/
+}
+
+html, body {
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif !important;
+}
+
+h1, h2 {
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
 }
