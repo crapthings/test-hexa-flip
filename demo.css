@@ -8,7 +8,7 @@ html, body {
   text-align: center;
 }
 #set-button,
-#submit {
+.submit {
   background-color: #888;
   color: #fff;
   -webkit-border-radius: 4px;
@@ -21,9 +21,11 @@ html, body {
   filter: alpha(opacity=95);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
   font-size: 20px;
+  position: relative;
+  z-index: 999;
 }
 #set-button:hover,
-#submit:hover {
+.submit:hover {
   opacity: 1;
   -ms-filter: none;
   filter: none;
