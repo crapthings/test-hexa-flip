@@ -47,7 +47,7 @@ body {
   opacity: .9;
   filter: alpha(opacity=95);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
-  font-size: 20px;
+  font-size: 12px;
   position: relative;
   z-index: 999;
 }
@@ -300,7 +300,7 @@ h1, h2 {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 200;
   font-size: 48px;
 }
 
@@ -312,4 +312,10 @@ h2 {
 a {
   text-decoration: none;
   color: white;
+}
+
+
+.sss-cell header {
+  position: relative;
+  top: 10px;
 }
