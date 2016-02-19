@@ -165,13 +165,13 @@ body {
 }
 
 #username {
-  perspective-origin: 50% 150%;
+  perspective-origin: 50% 160%;
 }
 
 #vcode {
   position: relative;
   z-index: 11;
-  perspective-origin: 50% -20%;
+  perspective-origin: 50% -50%;
 }
 
 .flex {
