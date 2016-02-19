@@ -204,7 +204,7 @@
 
             if (checkUsername && checkPassword && checkVcode) {
 
-                output.innerHTML = '登陆。。。'
+                $output.text('登陆。。。')
 
                 username.flipBack()
                 password.flip()
@@ -229,7 +229,7 @@
             } else {
 
                 $('.outbox1').addClass('wobble')
-                output.innerHTML = 'QQJ 231 321'
+                $output.text('QQJ 231 321')
             }
         }
 
